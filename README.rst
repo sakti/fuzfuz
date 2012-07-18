@@ -2,7 +2,7 @@ fuzfuz
 ======
 
 A simple dictionary fuzzer, extendable using executor. The dictionary placed in
-`data` directory, grabbed from `fuzzdb`_.
+``data`` directory, grabbed from `fuzzdb`_.
 
 
 List of Executor
@@ -15,7 +15,7 @@ List of Executor
 Requirements
 ------------
 
-For `soapws` executor
+For ``soapws`` executor
 
 - `suds`_
 
@@ -27,8 +27,8 @@ For `soapws` executor
 Usage
 -----
 
-Execute `fuzfuz.py` with python interpreter, FuzFuz shell will show up. Set
-mandatory options, then `run` the executor.
+Execute ``fuzfuz.py`` with python interpreter, FuzFuz shell will show up. Set
+mandatory options, then ``run`` the executor.
 
 ::
 

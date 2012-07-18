@@ -10,12 +10,14 @@ EXECUTOR_DIR = os.path.join(ROOT_DIR, 'executor')
 
 
 def walk_data_dir(data_dir):
+    "recursive walking in directory, return list of files"
     for dir_name, sub_dirs, files in os.walk(data_dir):
         for file in files:
             yield os.path.join(dir_name, file)
 
 
 def parse_content(fh):
+    "parse file content, return list of lines"
     for line in fh:
         line = line.strip()
         if line and not line.startswith('# '):
@@ -23,6 +25,7 @@ def parse_content(fh):
 
 
 def get_payloads(filenames):
+    "get fuzz payloads from file"
     for name in filenames:
         if name.endswith('.txt'):
             with open(name) as reader:
@@ -31,6 +34,7 @@ def get_payloads(filenames):
 
 
 def get_list_executor(dirname):
+    "search module in ``executor`` directory"
     list_executor = {}
     for item in os.listdir(dirname):
         path = os.path.join(dirname, item)
@@ -97,16 +101,19 @@ class FuzFuz(cmd.Cmd, object):
         self.executor = ''
 
     def _get_current_executor(self):
+        "return current executor"
         if self.executor:
             return self.executors[self.executor]
 
     def _get_options(self):
+        "get all options of current executor"
         if self.executor:
             return self._get_current_executor().LIST_OPTIONS
         else:
             return '-'
 
     def _check_options(self):
+        "check if user options comply all executor options"
         for option in self._get_options():
             if not option in self.options:
                 return False
