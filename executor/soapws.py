@@ -1,3 +1,6 @@
+"""Executor for soap-based webservice,
+all executor must implement ALL_OPTIONS and
+execute function"""
 import suds
 
 
@@ -5,6 +8,7 @@ LIST_OPTIONS = ['wsdl', 'method']
 
 
 def _get_number_sig(methodname, definition):
+    "get number of function parameters"
     for method, signature in definition.ports[0][1]:
         if method == methodname:
             return len(signature)
