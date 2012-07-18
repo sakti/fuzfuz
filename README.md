@@ -1,4 +1,0 @@
-fuzfuz
-======
-
-a simple fuzzer
