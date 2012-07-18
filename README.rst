@@ -36,7 +36,7 @@ mandatory options, then ``run`` the executor.
     FuzFuz > list
     soapws
     httppost
-    FuzFuz > soapws
+    FuzFuz > select soapws
     FuzFuz soapws > 
 
     mandatory options:
