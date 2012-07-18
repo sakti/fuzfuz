@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>FuzFuz by sakti</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/sakti/fuzfuz">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/sakti/fuzfuz/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/sakti/fuzfuz/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>FuzFuz</h1>
+          <p>a simple dict fuzzer</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/sakti">sakti</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>fuzfuz</h1>
+
+<p>A simple dictionary fuzzer, extendable using executor. The dictionary placed in
+<code>data</code> directory, grabbed from <a href="http://code.google.com/p/fuzzdb/">fuzzdb</a>.</p>
+
+<h2>List of Executor</h2>
+
+<ul>
+<li>soapws</li>
+<li>httppost, <em>not complete</em>
+</li>
+</ul><h2>Requirements</h2>
+
+<p>For <code>soapws</code> executor</p>
+
+<ul>
+<li>
+<p><a href="https://fedorahosted.org/suds/">suds</a></p>
+
+<p>pip install suds</p>
+</li>
+</ul><h2>Usage</h2>
+
+<p>Execute <code>fuzfuz.py</code> with python interpreter, FuzFuz shell will show up. Set
+mandatory options, then <code>run</code> the executor.</p>
+
+<pre><code>$ python fuzfuz.py
+FuzFuz &gt; list
+soapws
+httppost
+FuzFuz &gt; select soapws
+FuzFuz soapws &gt; 
+
+mandatory options:
+wsdl
+method
+FuzFuz soapws &gt; set wsdl http://example.com/ws?wsdl
+FuzFuz soapws &gt; set method login
+FuzFuz soapws &gt; show
+wsdl    : http://example.com/ws?wsdl
+method  : login
+FuzFuz soapws &gt; run
+.
+.
+.
+.
+</code></pre>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    
+  </body>
+</html>
