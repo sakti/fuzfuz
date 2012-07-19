@@ -95,7 +95,7 @@ class FuzFuz(cmd.Cmd, object):
 
     def do_reset(self, line):
         "reset all option"
-        self.options = {'name': 'sdc'}
+        self.options = {}
         self.prompt = 'FuzFuz > '
         self.executors = get_list_executor(EXECUTOR_DIR)
         self.executor = ''

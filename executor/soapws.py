@@ -18,13 +18,19 @@ def execute(options, payloads):
     wsdl = options.get('wsdl')
     method_name = options.get('method')
 
-    client = suds.client.Client(wsdl)
-    number_sig = _get_number_sig(method_name, client.sd[0])
-
-    method = getattr(client.service, method_name)
+    try:
+        client = suds.client.Client(wsdl)
+        number_sig = _get_number_sig(method_name, client.sd[0])
+        method = getattr(client.service, method_name)
+    except Exception as e:
+        print e
+        return
 
     print 'target function: %s' % method_name
 
     for payload in payloads:
-        print "\nexecute payload: %s" % payload
-        print method(*([payload] * number_sig))
+        try:
+            print "\nexecute payload: %s" % payload
+            print method(*([payload] * number_sig))
+        except Exception as e:
+            print e
