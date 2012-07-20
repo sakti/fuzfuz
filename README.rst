@@ -9,6 +9,7 @@ List of Executor
 ----------------
 
 - soapws
+- httpget
 - httppost, *not complete*
 
 
