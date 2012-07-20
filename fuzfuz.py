@@ -77,6 +77,15 @@ class FuzFuz(cmd.Cmd, object):
         for option in self._get_options():
             print option
 
+        if self._get_current_executor():
+            print '\n'
+            executor_title = ('Executor: %s' %
+                    self._get_current_executor().__name__)
+            print executor_title
+            print '=' * len(executor_title)
+            print self._get_current_executor().__doc__
+            print '\n'
+
     def do_EOF(self, line):
         return True
 

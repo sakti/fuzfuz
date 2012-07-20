@@ -1,5 +1,5 @@
 """Executor for http get request,
-set option url with * asteric sign to give
+set option url with * asterisk sign to give
 hints"""
 
 import urllib2
@@ -9,7 +9,7 @@ LIST_OPTIONS = ['url']
 
 def execute(options, payloads):
     url = options.get('url')
-    #check if there is asteric
+    #check if there is asterisk
     if url.find('*') == -1:
         print "you must specify * in your url"
         return
