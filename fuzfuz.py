@@ -3,6 +3,8 @@
 import os
 import os.path
 import cmd
+import logging
+import logging.handlers
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(ROOT_DIR, 'data')
@@ -67,6 +69,7 @@ class FuzFuz(cmd.Cmd, object):
             print "format error"
         else:
             self.options[line[0]] = line[1]
+        self._init_logging()
 
     def do_show(self, line):
         "show\nshow key\n\nShow options [key], default show all options"
@@ -104,10 +107,24 @@ class FuzFuz(cmd.Cmd, object):
 
     def do_reset(self, line):
         "reset all option"
-        self.options = {}
+        self.options = {'log': 'run.log'}
         self.prompt = 'FuzFuz > '
         self.executors = get_list_executor(EXECUTOR_DIR)
         self.executor = ''
+        self.logging = None
+
+    def _init_logging(self):
+        "logging initialization"
+        if self._get_current_executor():
+            self.logging = logging.getLogger('fuzfuz %s' %
+                            self._get_current_executor().__name__)
+            filename = self.options.get('log')
+            formatter = logging.Formatter(
+                        '[%(asctime)s] [%(name)s] [%(levelname)s] %(message)s')
+            handler = logging.handlers.WatchedFileHandler(filename=filename)
+            handler.setFormatter(formatter)
+            self.logging.addHandler(handler)
+            self.logging.setLevel(logging.DEBUG)
 
     def _get_current_executor(self):
         "return current executor"
@@ -139,7 +156,8 @@ class FuzFuz(cmd.Cmd, object):
             return
 
         payloads = get_payloads(walk_data_dir(DATA_DIR))
-        self._get_current_executor().execute(self.options, payloads)
+        self._get_current_executor().execute(self.options, payloads,
+                                                self.logging)
 
 if __name__ == '__main__':
     FuzFuz().cmdloop()

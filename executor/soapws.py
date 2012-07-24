@@ -14,7 +14,7 @@ def _get_number_sig(methodname, definition):
             return len(signature)
 
 
-def execute(options, payloads):
+def execute(options, payloads, logging):
     wsdl = options.get('wsdl')
     method_name = options.get('method')
 
@@ -27,10 +27,13 @@ def execute(options, payloads):
         return
 
     print 'target function: %s' % method_name
+    logging.info('target function %s' % method_name)
 
     for payload in payloads:
         try:
             print "\nexecute payload: %s" % payload
-            print method(*([payload] * number_sig))
+            logging.info("\nexecute payload: %s" % payload)
+            result = method(*([payload] * number_sig))
+            logging.info('result %s' % result)
         except Exception as e:
             print e

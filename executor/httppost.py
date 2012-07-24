@@ -4,5 +4,5 @@
 LIST_OPTIONS = ['abcef', 'sdfd']
 
 
-def execute(options, payloads):
+def execute(options, payloads, logging):
     pass
