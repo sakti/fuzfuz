@@ -156,8 +156,13 @@ class FuzFuz(cmd.Cmd, object):
             return
 
         payloads = get_payloads(walk_data_dir(DATA_DIR))
-        self._get_current_executor().execute(self.options, payloads,
-                                                self.logging)
+
+        try:
+            self._get_current_executor().execute(self.options,
+                                                    payloads,
+                                                    self.logging)
+        except KeyboardInterrupt:
+            print 'STOPPING'
 
 if __name__ == '__main__':
     FuzFuz().cmdloop()
