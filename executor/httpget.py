@@ -4,11 +4,14 @@ hints"""
 
 import urllib2
 
-LIST_OPTIONS = ['url']
+LIST_OPTIONS = ['url', 'cookie', 'user_agent']
 
 
 def execute(options, payloads, logging):
     url = options.get('url')
+    cookie = options.get('cookie')
+    user_agent = options.get('user_agent')
+
     #check if there is asterisk
     if url.find('*') == -1:
         print "you must specify * in your url"
@@ -22,7 +25,14 @@ def execute(options, payloads, logging):
         print "current url: %s" % current_url
         logging.info("current url: %s" % current_url)
         try:
-            response = urllib2.urlopen(current_url, timeout=10)
+            request = urllib2.Request(current_url)
+            request.add_header(
+                    'Cookie',
+                    cookie)
+            request.add_header(
+                    'User-agent',
+                    user_agent)
+            response = urllib2.urlopen(request, timeout=10)
         except urllib2.HTTPError as e:
             print e
             logging.info(e)

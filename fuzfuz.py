@@ -65,10 +65,10 @@ class FuzFuz(cmd.Cmd, object):
     def do_set(self, line):
         "set key value\n\nSet option key and value"
         line = line.split()
-        if len(line) != 2:
+        if len(line) < 2:
             print "format error"
         else:
-            self.options[line[0]] = line[1]
+            self.options[line[0]] = ''.join(line[1:])
         self._init_logging()
 
     def do_show(self, line):

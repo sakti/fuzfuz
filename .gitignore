@@ -28,3 +28,5 @@ pip-log.txt
 
 #vim swap
 *.swp
+
+*.log
