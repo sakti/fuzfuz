@@ -16,6 +16,8 @@ List of Executor
 Requirements
 ------------
 
+Python 2.6/2.7
+
 For ``soapws`` executor
 
 - `suds`_
@@ -57,3 +59,10 @@ mandatory options, then ``run`` the executor.
     
 .. _suds: https://fedorahosted.org/suds/
 .. _fuzzdb: http://code.google.com/p/fuzzdb/
+
+License
+-------
+
+Future Enhancement 
+-----------------
+- Reporting feature
