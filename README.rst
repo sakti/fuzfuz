@@ -65,6 +65,8 @@ License
 
 fuzfuz is released under the BSD license:
 
+::
+
     Copyright (c) Sakti Dwi Cahyono and individual contributors.
     All rights reserved.
 
